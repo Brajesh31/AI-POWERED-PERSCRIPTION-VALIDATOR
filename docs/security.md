@@ -1,21 +1,34 @@
-# Security controls
+# 🔐 Security Controls
+
+## Security status
+
+This repository contains no application code or deployed service, so there are no implemented application security controls to certify. The following controls are prerequisites for a future implementation.
 
 ## Sensitive assets
-Treat uploaded files, prescription text, patient identifiers, clinical flags, audit records, credentials, and provider responses as sensitive assets.
 
-## Minimum future controls
+Treat prescription documents, extracted text, patient identifiers, review findings, audit records, credentials, provider responses and backups as sensitive assets.
+
+## Minimum application controls
+
 - Authentication and server-side authorization on every sensitive operation.
-- Least-privilege service identities and separate development, staging, and production environments.
-- Secret-manager-backed credentials; no secrets in source, logs, fixtures, or client bundles.
-- TLS for network traffic and encryption at rest for stored sensitive data.
-- File type, size, content, and malware checks at upload boundaries.
-- Input validation, output encoding, safe error messages, and dependency vulnerability management.
-- Rate limits and abuse monitoring for exposed endpoints.
-- Audit events for access and actions, with restricted access and defined retention.
-- Backups, restore tests, incident response, and secure deletion processes.
+- Least-privilege roles and service identities.
+- Managed credentials, rotation and separate environment secrets.
+- TLS for network communication and encryption at rest.
+- File extension, MIME type, content, size and malware checks at upload boundaries.
+- Strict request schemas, safe output handling and bounded processing.
+- Rate limits, abuse monitoring and safe error responses.
+- Audit events for access and professional actions.
+- Dependency, container and supply-chain security checks.
+- Backup, restore, incident response and secure deletion procedures.
 
-## AI-specific threats
-Treat uploaded documents and extracted text as untrusted input. Defend against prompt injection, data exfiltration, insecure tool invocation, model-provider leakage, and unsafe reliance on generated output. AI output must not bypass deterministic authorization or clinical review controls.
+## AI-specific security
 
-## Reporting
-Report suspected vulnerabilities privately to the repository maintainer. Do not include real patient data. Provide the affected component, reproduction steps using synthetic data, impact, and suggested mitigation.
+Treat uploaded files, OCR text and user-supplied content as untrusted. Plan controls for prompt injection, data exfiltration, insecure tool invocation, model-provider leakage, malicious files and unsafe reliance on generated content. Model output must never bypass authorization or clinical review.
+
+## Secrets
+
+Never commit API keys, passwords, access tokens, patient records, prescription images, database exports or private provider logs. A secret deleted from the latest commit may remain in Git history. Revoke or rotate it with the issuer.
+
+## Vulnerability reporting
+
+Report suspected vulnerabilities privately to the repository maintainer. Do not include real patient data. Provide the affected component, synthetic reproduction steps, impact and suggested mitigation.
