@@ -1,17 +1,39 @@
-# Operations and incident response
+# 🧯 Operations and Incident Response
 
-## Operational events to handle
+## Current status
 
-A future deployment should define procedures for provider outages, reference-data staleness, parsing regressions, unexpected clinical flags, suspected data exposure, account compromise, and unavailable audit storage.
+No application services, production deployment, clinical workflow, or operational monitoring are present. This guide sets expectations for future deployments.
 
-## Incident response
+## Events requiring procedures
 
-1. Protect patients and users first. Disable affected functionality when safe operation cannot be assured.
-2. Preserve relevant security evidence without copying unnecessary patient content.
-3. Notify the accountable security, privacy, and clinical owners.
-4. Assess scope, data exposure, and potential impact.
+A future operating plan should cover:
+- Suspected exposure of patient or prescription data.
+- Unauthorized record access or account compromise.
+- Incorrect or unexpected extraction output.
+- Reference data that is unavailable, stale, or changed.
+- Parsing or deterministic-rule regression.
+- External AI provider outage or suspicious model output.
+- Audit storage failure or missing audit events.
+- Backup, restoration, and deletion failures.
+
+## Incident response sequence
+
+1. Protect patients and users. Disable affected functionality if safe operation cannot be assured.
+2. Notify accountable security, privacy, and clinical owners.
+3. Preserve necessary evidence without copying unnecessary patient content.
+4. Assess the affected services, time range, records and possible impact.
 5. Follow applicable contractual and legal notification obligations.
-6. Remediate, test, and document the root cause.
-7. Resume service only after an authorized review.
+6. Contain, remediate and test the underlying issue.
+7. Document the incident, decisions and corrective actions.
+8. Resume service only after authorized review.
 
-Maintain an incident log with restricted access and defined retention. Do not use public issue trackers for sensitive incident details.
+## Operational controls
+
+- Define on-call ownership and escalation paths.
+- Monitor service health without capturing sensitive payloads.
+- Restrict access to audit and incident records.
+- Define log and audit retention separately.
+- Test backups and recovery procedures.
+- Keep rollback instructions and dependency ownership current.
+
+Do not use public GitHub issues for sensitive incident details.
