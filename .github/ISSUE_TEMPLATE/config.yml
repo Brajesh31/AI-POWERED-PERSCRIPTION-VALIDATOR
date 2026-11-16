@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability report
+    url: https://github.com/Brajesh31/AI-POWERED-PERSCRIPTION-VALIDATOR/security/advisories/new
+    about: Report a security vulnerability privately. Do not disclose patient data or real prescriptions.
+  - name: General questions and support
+    url: https://github.com/Brajesh31/AI-POWERED-PERSCRIPTION-VALIDATOR/discussions
+    about: Ask general questions that are not bug reports or feature requests.
