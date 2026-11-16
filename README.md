@@ -611,3 +611,5 @@ This project is not currently a medical device, validated clinical decision supp
 ---
 
 <p align="center"><strong>Building responsible software for safer, evidence-aware prescription review.</strong></p>
+
+Last updated: 2026-11-16 18:08 UTC
