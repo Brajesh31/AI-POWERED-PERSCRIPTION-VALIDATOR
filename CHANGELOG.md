@@ -1,5 +1,9 @@
 # Changelog
 
-## [Unreleased]
+Notable repository changes are recorded here.
 
-- Added repository documentation, governance, security guidance, and technical documentation placeholders.
+## [Unreleased]
+- Expanded the project overview and explicitly documented the documentation-only repository status.
+- Added clinical safety, privacy, architecture, and operational guidance.
+- Reduced README automation from push/hourly triggers to manual and weekly execution.
+- No application, model, API, database, or clinical validation capability has been introduced.
