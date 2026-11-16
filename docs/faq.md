@@ -1,17 +1,19 @@
-# FAQ
+# Frequently asked questions
 
-## Does this replace a clinician or pharmacist?
+## Can I use this repository to validate a prescription now?
+No. It is currently a documentation-only foundation. There is no application, model, API, or validation engine.
 
-No. It is intended to assist review and must not make autonomous medical decisions.
+## Does the project replace a clinician or pharmacist?
+No. Any future functionality is intended to assist qualified professionals, not make autonomous medical decisions.
 
-## What data may be used during development?
+## Does a green result mean a prescription is safe?
+It must not. Future output should distinguish technical checks from clinical review and professional approval.
 
-Synthetic or properly de-identified data only.
+## What data should be used for development?
+Synthetic data by default. Use of de-identified data requires documented approval and privacy review.
 
-## Where should secrets go?
+## Are AI-generated findings authoritative?
+No. A model is not a source of clinical truth. Any advisory finding must be traceable to reviewed evidence and remain subject to professional review.
 
-Use local environment configuration or an approved secret manager. Never commit them.
-
-## Is a production compliance assessment included?
-
-No. Deployment owners must assess applicable clinical, privacy, security, and regulatory requirements.
+## Is the project production-ready or compliant?
+No production-readiness or regulatory-compliance claim is made. Those assessments depend on the eventual implementation, intended use, deployment, and jurisdiction.
