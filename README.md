@@ -229,14 +229,21 @@ Technology decisions must follow the intended use, data sensitivity, audit requi
 
 ## 🗂️ Repository Structure
 
-The current repository is intentionally small.
+This repository currently contains project documentation and GitHub governance automation. It does not contain an application implementation.
 
 ```text
 AI-POWERED-PERSCRIPTION-VALIDATOR/
 ├── .github/
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── workflows/
-│       └── update-readme.yml
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   ├── config.yml
+│   │   ├── documentation.md
+│   │   └── feature_request.md
+│   ├── workflows/
+│   │   ├── ci.yml
+│   │   └── update-readme.yml
+│   ├── dependabot.yml
+│   └── PULL_REQUEST_TEMPLATE.md
 ├── docs/
 │   ├── README.md
 │   ├── api.md
@@ -251,10 +258,12 @@ AI-POWERED-PERSCRIPTION-VALIDATOR/
 │   ├── privacy.md
 │   ├── project-status.md
 │   ├── security.md
+│   ├── testing.md
 │   └── troubleshooting.md
 ├── .editorconfig
 ├── .env.example
 ├── .gitattributes
+├── .gitignore
 ├── CHANGELOG.md
 ├── CITATION.cff
 ├── CODEOWNERS
@@ -267,7 +276,16 @@ AI-POWERED-PERSCRIPTION-VALIDATOR/
 └── SUPPORT.md
 ```
 
-Application directories, source code, dependency manifests, model assets, migrations and tests will be added only after implementation decisions are made.
+### GitHub automation
+
+- **Documentation checks:** validates required repository files, non-empty Markdown files, and relative Markdown links. It does not run application tests.
+- **README update:** retains the existing scheduled/manual README workflow.
+- **Dependabot:** checks GitHub Actions dependencies weekly. There are no application dependency manifests yet.
+- **Issue templates:** provide structured bug, feature, and documentation reports. Do not submit patient information or real prescriptions.
+
+CodeQL is not configured because this repository currently has no application source code for meaningful static analysis. Add language-specific security analysis when implementation code is introduced.
+
+Application directories, package manifests, API specifications, database migrations, model assets and test suites must be added alongside real implementation, not as empty placeholders.
 
 ---
 
