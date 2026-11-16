@@ -1,17 +1,30 @@
-# Troubleshooting
+# 🧯 Troubleshooting
 
 ## Current status
-There is no executable application to troubleshoot yet. When implementation is added, record reproducible issues against the exact runtime and dependency versions.
 
-## Recommended report format
-Include the command, operating system, runtime version, sanitized configuration, expected behavior, actual behavior, and minimal reproduction using synthetic data.
+There is no executable application to troubleshoot yet. The repository currently contains project documentation only.
+
+## Future issue report format
+
+When code is introduced, report:
+
+- Exact command and affected component.
+- Operating system and runtime versions.
+- Sanitized configuration.
+- Expected behavior and actual behavior.
+- Minimal reproduction using synthetic values.
+- Relevant redacted logs and correlation identifier.
 
 ## Common future failure categories
-- Unsupported or oversized input: verify documented format and size limits.
-- Ambiguous extraction: require field confirmation; never guess.
-- Reference data unavailable or stale: return an unresolved state and escalate.
-- Model provider timeout: fail visibly and allow safe retry or manual review.
-- Authorization failure: verify the authenticated identity and server-side access policy.
-- Data retention or deletion issue: preserve audit evidence and escalate to the privacy owner.
 
-Never share credentials, patient records, prescription images, raw prompts, or unredacted logs when requesting help.
+| Problem | Safe diagnostic direction |
+|---|---|
+| Unsupported upload | Check documented format and size limits |
+| Ambiguous extraction | Request human confirmation; never guess |
+| Missing prescription field | Mark unresolved and require input |
+| Reference source unavailable | Return an unable-to-assess state |
+| Model provider timeout | Fail visibly and route to manual review |
+| Authorization failure | Verify identity and server-side permissions |
+| Data deletion issue | Preserve necessary audit evidence and escalate to the privacy owner |
+
+Never share credentials, patient records, prescription images, raw prompts, or unredacted logs in public support channels.
