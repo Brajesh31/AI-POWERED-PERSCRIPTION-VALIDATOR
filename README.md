@@ -40,7 +40,7 @@ These are roadmap goals, not features currently implemented.
 
 There is no runnable application to install yet. Start by reviewing:
 
-1. [Project status and scope](docs/project-status.md)
+1. [Project status](docs/project-status.md)
 2. [Architecture proposal](docs/architecture.md)
 3. [Clinical safety requirements](docs/clinical-safety.md)
 4. [Privacy and data handling](docs/privacy.md)
@@ -67,5 +67,3 @@ Contributions should be scoped, evidence-based, tested, and explicit about limit
 ## ⚠️ Disclaimer
 
 This repository is not a medical device, clinical decision support product, pharmacy system, or substitute for professional judgment. No clinical use is supported by the current repository. Any future real-world use requires appropriate clinical validation, security and privacy review, and assessment of applicable legal and regulatory obligations.
-
-Last updated: 2026-11-16 02:00 UTC
