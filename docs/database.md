@@ -1,11 +1,9 @@
 # Database and persistence
 
 ## Current status
-
 No database engine, schema, migration, or persistence layer is implemented.
 
 ## Future design checklist
-
 If persistence is required, define:
 - Entities, relationships, ownership, and tenant boundaries.
 - Minimum necessary patient and prescription fields.
