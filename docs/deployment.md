@@ -1,18 +1,30 @@
-# Deployment readiness
+# 🚀 Deployment Readiness
 
 ## Current status
-No application runtime or production deployment configuration is present.
 
-## Production readiness checklist
-- Defined intended use, users, clinical limitations, and accountable owner.
-- Qualified clinical review and documented risk management.
-- Applicable regulatory and privacy assessment for the target jurisdiction.
-- Strong authentication, authorization, and least-privilege service identities.
-- Managed secrets, encrypted transport, and encrypted storage.
-- Approved data processors and external model-provider terms.
-- Defined data retention, deletion, audit, backup, and restore procedures.
-- Monitoring that avoids sensitive payload capture.
-- Incident response, vulnerability disclosure, rollback, and disaster recovery.
-- Security testing and clinical workflow validation before release.
+No application runtime, container image, infrastructure configuration, or production deployment exists in this repository. It must not be deployed for patient-facing or clinical use.
 
-Do not deploy this repository for clinical or patient-facing use in its current state.
+## Release prerequisites
+
+| Area | Required evidence |
+|---|---|
+| Intended use | Defined users, purpose, exclusions and accountable owner |
+| Clinical safety | Risk analysis, reviewed rules and qualified clinical oversight |
+| Privacy | Data-flow map, lawful basis, retention and deletion process |
+| Regulatory | Applicable jurisdictional assessment |
+| Identity | Authentication, authorization and least privilege |
+| Secrets | Managed credentials with rotation procedures |
+| Transport and storage | TLS and encryption at rest |
+| AI providers | Approved data-processing terms and restricted data transfer |
+| Audit | Restricted access logs and defined retention |
+| Reliability | Backup, restore, monitoring and incident response |
+| Validation | Software, security, usability and clinical evidence |
+| Release management | Rollback plan and authorized release approval |
+
+## Infrastructure principles
+
+When implementation begins, isolate environments, restrict network access, store secrets outside source control, avoid sensitive payloads in logs, and use health checks that do not expose patient information.
+
+## Go-live rule
+
+Do not deploy clinical or patient-facing functionality until the accountable clinical, security, privacy, and regulatory reviewers have approved the intended use and supporting evidence. A successful software build is not clinical clearance.
