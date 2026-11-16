@@ -1,11 +1,9 @@
 # Security controls
 
 ## Sensitive assets
-
 Treat uploaded files, prescription text, patient identifiers, clinical flags, audit records, credentials, and provider responses as sensitive assets.
 
-## Minimum controls for a future implementation
-
+## Minimum future controls
 - Authentication and server-side authorization on every sensitive operation.
 - Least-privilege service identities and separate development, staging, and production environments.
 - Secret-manager-backed credentials; no secrets in source, logs, fixtures, or client bundles.
@@ -17,9 +15,7 @@ Treat uploaded files, prescription text, patient identifiers, clinical flags, au
 - Backups, restore tests, incident response, and secure deletion processes.
 
 ## AI-specific threats
-
 Treat uploaded documents and extracted text as untrusted input. Defend against prompt injection, data exfiltration, insecure tool invocation, model-provider leakage, and unsafe reliance on generated output. AI output must not bypass deterministic authorization or clinical review controls.
 
 ## Reporting
-
-Report suspected vulnerabilities privately to the repository maintainer. Do not include real patient data in a report. Provide affected component, reproduction steps using synthetic data, impact, and suggested mitigation.
+Report suspected vulnerabilities privately to the repository maintainer. Do not include real patient data. Provide the affected component, reproduction steps using synthetic data, impact, and suggested mitigation.
