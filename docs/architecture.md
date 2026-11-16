@@ -1,24 +1,72 @@
-# Architecture proposal
+# 🏗️ Proposed Architecture
 
 ## Status
-Concept only. No corresponding services or modules are implemented in this repository.
 
-## Suggested processing boundaries
-1. **Input boundary:** accept explicitly supported formats and reject oversized or unsupported files.
-2. **Identity and consent:** authenticate the operator, authorize the action, and establish a lawful purpose before processing sensitive information.
-3. **Extraction:** parse structured data or extract candidate text. Preserve source coordinates and provenance where possible.
-4. **Normalization:** normalize units and identifiers using explicit, versioned mappings. Never silently guess missing values.
-5. **Deterministic checks:** execute reviewed, versioned rules for required fields, data types, ranges, and consistency.
-6. **Evidence-backed review assistance:** consult validated, maintained clinical knowledge sources. Record their version and retrieval date.
-7. **Human review:** present flags, source evidence, limitations, and unresolved questions to a qualified professional.
-8. **Audit and retention:** record access and actions without copying unnecessary patient data into logs.
+This is a design proposal only. The repository does not currently contain a frontend, backend, extraction pipeline, rules engine, model, or database.
 
-## Non-negotiable boundaries
-- A language model must not be the authority for clinical facts or medication recommendations.
-- A model must not autonomously approve, reject, prescribe, change, or dispense medication.
-- Missing, ambiguous, conflicting, stale, or unavailable data must produce an explicit unresolved state.
-- Every clinical flag must be traceable to a rule or source and its version.
-- The system must remain usable and safe when any external AI provider is unavailable.
+## Design goals
 
-## Future architecture decisions
-Record decisions for supported input types, deployment boundary, identity provider, clinical knowledge source, persistence, audit strategy, and model-provider isolation before implementation.
+- Separate document extraction from confirmed prescription information.
+- Keep deterministic checks independent from generative AI.
+- Preserve provenance for every extracted or normalized field.
+- Make ambiguous, missing, stale and unavailable data explicit.
+- Require professional review for clinical decisions.
+- Minimize sensitive data movement and retention.
+
+## Proposed processing layers
+
+| Layer | Responsibility | Trust boundary |
+|---|---|---|
+| Review interface | Capture input and present findings | Authenticated professional |
+| Application API | Authorization, request validation and orchestration | Server-side policy |
+| Intake adapter | File type, size and content validation | Untrusted uploaded file |
+| Extraction adapter | OCR or structured extraction | Candidate text, not confirmed data |
+| Confirmation layer | Professional confirms uncertain fields | Human-confirmed field values |
+| Normalization | Units, medicine identifiers and structured fields | Versioned mappings, no guessing |
+| Deterministic rules | Required-field and consistency checks | Tested, versioned rule set |
+| Reference adapter | Approved clinical evidence lookup | Source provenance and freshness |
+| Optional AI adapter | Summarization or organization assistance | Untrusted advisory output |
+| Review workflow | Professional interpretation and decision | Human accountability |
+| Audit and persistence | Minimum necessary data and review events | Restricted access and retention |
+
+## Processing flow
+
+```text
+Authenticated reviewer
+        |
+        v
+Secure intake and file validation
+        |
+        v
+Extraction of candidate fields
+        |
+        v
+Human confirmation of uncertain values
+        |
+        v
+Versioned normalization
+        |
+        v
+Deterministic checks + approved reference lookup
+        |
+        v
+Review findings with evidence and limitations
+        |
+        v
+Qualified professional review
+        |
+        v
+Restricted audit record
+```
+
+## AI provider boundary
+
+AI calls, if introduced, must be isolated behind an adapter. The application must validate all model outputs against strict schemas and treat them as untrusted. A model must not invoke privileged tools, bypass authorization, update a prescription, or approve a clinical action.
+
+## Resilience
+
+If OCR, a model provider, reference data, storage, or another dependency is unavailable, the system must return an explicit unresolved state. A technical failure must never be represented as successful validation.
+
+## Decisions required before implementation
+
+Select supported input formats, intended users, identity provider, clinical data sources, persistence approach, hosting jurisdiction, audit and retention model, and technology stack. Record material choices as architecture decision records.
