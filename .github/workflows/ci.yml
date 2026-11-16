@@ -1,0 +1,78 @@
+name: Documentation checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-documentation:
+    name: Validate repository documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate required files and local Markdown links
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const required = [
+            'README.md',
+            'LICENSE',
+            'CONTRIBUTING.md',
+            'CODE_OF_CONDUCT.md',
+            'SECURITY.md',
+            'CHANGELOG.md',
+            'docs/README.md'
+          ];
+
+          const errors = [];
+          for (const file of required) {
+            if (!fs.existsSync(file)) errors.push(`Missing required file: ${file}`);
+            else if (!fs.readFileSync(file, 'utf8').trim()) errors.push(`Required file is empty: ${file}`);
+          }
+
+          function walk(dir) {
+            return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+              const full = path.join(dir, entry.name);
+              if (entry.isDirectory()) return walk(full);
+              return /\.md$/i.test(entry.name) ? [full] : [];
+            });
+          }
+
+          const markdownFiles = walk('.');
+          for (const file of markdownFiles) {
+            const content = fs.readFileSync(file, 'utf8');
+            if (!content.trim()) errors.push(`Markdown file is empty: ${file}`);
+
+            const linkPattern = /!?\[[^\]]*\]\(([^)]+)\)/g;
+            for (const match of content.matchAll(linkPattern)) {
+              let target = match[1].trim().replace(/^<|>$/g, '');
+              if (!target || /^(https?:|mailto:|#|data:)/i.test(target)) continue;
+              target = target.split('#')[0].split('?')[0];
+              if (!target) continue;
+              const resolved = path.resolve(path.dirname(file), decodeURIComponent(target));
+              if (!fs.existsSync(resolved)) {
+                errors.push(`Broken local link in ${file}: ${match[1]}`);
+              }
+            }
+          }
+
+          if (errors.length) {
+            console.error(errors.map(error => `::error::${error}`).join('\n'));
+            process.exit(1);
+          }
+          console.log(`Validated ${markdownFiles.length} Markdown files and required repository files.`);
+          NODE
