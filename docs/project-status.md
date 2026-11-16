@@ -1,22 +1,28 @@
-# Project status
+# 📊 Project Status
 
 ## Verified repository state
 
-The current repository is a documentation-only foundation. The default branch contains Markdown documentation, repository governance files, a placeholder environment file, and a README automation workflow.
+The current default branch is a documentation and repository-governance foundation. It includes Markdown guidance, contribution and security files, and a README maintenance workflow.
 
-The current tree does **not** contain:
+The repository does **not** currently include:
 - An application source directory or executable entry point.
-- A frontend or backend implementation.
-- A machine-learning model, OCR pipeline, or clinical rules engine.
-- An API server or published API schema.
-- A database schema or migration system.
-- A dependency lockfile or runtime dependency manifest.
-- An automated test suite or CI validation workflow.
+- A frontend or backend.
+- OCR, document parsing, or image upload handling.
+- A machine-learning model or clinical rules engine.
+- An API server or published OpenAPI specification.
+- A database schema, migrations, or persistence layer.
+- A dependency manifest or lockfile.
+- An automated test suite or application CI pipeline.
+- Production infrastructure or deployment configuration.
 
-## What this means
+## Capability statement
 
-The project name describes its intended direction, not its current capability. No prescription can currently be uploaded, parsed, checked, or validated by this repository.
+No prescription can currently be uploaded, parsed, checked, or validated using this repository. The project name describes the intended direction, not an implemented capability.
 
-## Completion gates
+## Documentation status
 
-The project should not be described as an operational validator until a reviewed implementation exists, core workflows are tested, privacy and security controls are implemented, and clinical safety and regulatory assessments have been completed.
+The README, architecture, clinical safety, API, database, privacy, security, development, installation, testing, deployment, operations, FAQ, and troubleshooting pages describe the current limitations or planned requirements. Proposed capabilities are not production features.
+
+## Conditions for changing this status
+
+Update this page only when implementation is committed and verified. A feature should be called implemented only when source code, configuration, tests and working evidence support that statement. Clinical-facing capability requires qualified review and appropriate validation beyond software tests.
