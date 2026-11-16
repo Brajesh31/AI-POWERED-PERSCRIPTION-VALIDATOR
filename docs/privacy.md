@@ -1,19 +1,33 @@
-# Privacy and data lifecycle
+# 🔒 Privacy and Data Lifecycle
 
-Prescription records may contain sensitive personal and health information. Treat inputs, extracted text, model prompts and outputs, caches, analytics events, and backups as potentially sensitive.
+Prescription records may contain sensitive personal and health information. Treat inputs, extracted text, model prompts and outputs, caches, analytics events, audit records and backups as potentially sensitive.
 
 ## Data minimization
+
 - Define the purpose and lawful basis before collecting data.
-- Collect only fields required for the documented workflow.
-- Prefer synthetic data for examples and tests.
-- De-identify data before non-production use and assess re-identification risk.
-- Do not send patient information to external model providers unless an approved, documented privacy and contractual review permits it.
+- Collect only the fields needed for the documented workflow.
+- Prefer synthetic data for examples, development and tests.
+- Use de-identified data only after approval and re-identification risk assessment.
+- Do not send patient information to an external model or OCR provider without documented privacy, security and contractual approval.
 
-## Lifecycle controls
-Document collection, access, transfer, storage, retention, export, correction, deletion, backup expiry, and incident handling. Define retention periods rather than keeping records indefinitely.
+## Lifecycle requirements
 
-## Technical controls
-Use encryption in transit and at rest, role-based least privilege, strong authentication, access logs, secure secret storage, and environment separation. Logs should use opaque request identifiers and avoid raw prescription contents.
+Document collection, access, transfer, processing, storage, retention, export, correction, deletion, backup expiry and incident handling. Define retention periods for each data category. Do not keep records indefinitely by default.
+
+## Technical requirements
+
+- Encrypt data in transit and at rest.
+- Enforce server-side authorization and least privilege.
+- Separate development, staging and production data.
+- Keep secrets in a managed secret store.
+- Use opaque request identifiers in logs.
+- Redact patient content from errors, traces and analytics.
+- Restrict and audit access to records and backups.
+
+## External processing
+
+Before using a third-party provider, document what data leaves the system, the provider's purpose, retention and training terms, geographic processing, subprocessors, deletion controls and contractual protections.
 
 ## Governance
-Before production, identify applicable privacy laws, data-controller/processor responsibilities, vendor terms, data residency requirements, breach notification duties, and procedures for access or deletion requests. This is guidance, not a legal compliance determination.
+
+Before production, identify applicable privacy laws, controller/processor responsibilities, data residency, breach notification duties, and access or deletion request procedures. This document is engineering guidance, not a legal compliance determination.
